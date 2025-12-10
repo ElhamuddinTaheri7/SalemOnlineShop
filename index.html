@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salem | Premium Online Store</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", Arial, sans-serif;
+      }
+
+      :root {
+        --primary: #2a4d9b;
+        --primary-light: #4a6dbf;
+        --primary-dark: #1f3870;
+        --secondary: #ff7a45;
+        --secondary-light: #ff9a6e;
+        --accent: #32b99d;
+        --dark: #1a1a2e;
+        --light: #f9f9fb;
+        --gray: #6c757d;
+        --gray-light: #e9ecef;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        --border-radius: 12px;
+        --border-radius-lg: 20px;
+      }
+
+      body {
+        background: var(--light);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      /* Header & Navigation */
+      header {
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        z-index: 1000;
+        border-bottom: 1px solid rgba(42, 77, 155, 0.1);
+        transition: var(--transition);
+      }
+
+      header.scrolled {
+        padding: 15px 5%;
+        box-shadow: var(--shadow);
+      }
+
+      .logo {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-icon {
+        color: var(--secondary);
+        font-size: 1.8rem;
+      }
+
+      .logo span {
+        color: var(--secondary);
+      }
+
+      .nav-container {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      nav {
+        display: flex;
+        gap: 25px;
+      }
+
+      nav a {
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--dark);
+        position: relative;
+        padding: 5px 0;
+        transition: var(--transition);
+      }
+
+      nav a:after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--secondary);
+        transition: var(--transition);
+      }
+
+      nav a:hover {
+        color: var(--primary);
+      }
+
+      nav a:hover:after {
+        width: 100%;
+      }
+
+      .cart-icon {
+        position: relative;
+        font-size: 1.4rem;
+        color: var(--dark);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .cart-icon:hover {
+        color: var(--primary);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: var(--secondary);
+        color: white;
+        font-size: 0.7rem;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        color: var(--primary);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      #hero {
+        height: 100vh;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+          url("https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")
+            center/cover no-repeat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 900px;
+        padding: 0 20px;
+        z-index: 2;
+      }
+
+      #hero h1 {
+        font-size: 4.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        animation: fadeInUp 1.2s ease forwards;
+        line-height: 1.1;
+        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      #hero p {
+        margin-top: 12px;
+        font-size: 1.4rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+        animation: fadeInUp 1.2s ease 0.3s forwards;
+        opacity: 0;
+      }
+
+      .hero-buttons {
+        margin-top: 35px;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        animation: fadeInUp 1.2s ease 0.6s forwards;
+        opacity: 0;
+      }
+
+      .hero-btn {
+        padding: 16px 32px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        border: none;
+      }
+
+      .btn-primary {
+        background: var(--secondary);
+        color: white;
+        box-shadow: 0 5px 20px rgba(255, 122, 69, 0.4);
+        border: 2px solid var(--secondary);
+      }
+
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--secondary);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(255, 122, 69, 0.5);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        border: 2px solid white;
+      }
+
+      .btn-secondary:hover {
+        background: white;
+        color: var(--dark);
+        transform: translateY(-3px);
+      }
+
+      .floating-icons {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .floating-icon {
+        position: absolute;
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.2);
+        animation: float 6s infinite ease-in-out;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      /* Sections */
+      section {
+        padding: 120px 5%;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        color: var(--primary);
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: var(--secondary);
+        border-radius: 2px;
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        color: var(--gray);
+        margin-bottom: 50px;
+        max-width: 700px;
+        line-height: 1.6;
+      }
+
+      /* About Section */
+      #about {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .about-content {
+        flex: 1;
+      }
+
+      .about-stats {
+        display: flex;
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .stat {
+        text-align: center;
+        padding: 20px;
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+        flex: 1;
+        transition: var(--transition);
+      }
+
+      .stat:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 5px;
+      }
+
+      .stat-label {
+        color: var(--gray);
+        font-weight: 500;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: var(--border-radius-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transform: rotate(2deg);
+        transition: var(--transition);
+      }
+
+      .about-image:hover {
+        transform: rotate(0deg);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Products Section */
+      #products {
+        background: white;
+        border-radius: var(--border-radius-lg);
+        margin: 50px auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #products:before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+        background: var(--primary-light);
+        border-radius: 50%;
+        opacity: 0.1;
+      }
+
+      .product-filters {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 10px 25px;
+        background: var(--gray-light);
+        border: none;
+        color: var(--dark);
+        border-radius: 50px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--primary);
+        color: white;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+        position: relative;
+        border: 1px solid var(--gray-light);
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--accent);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        z-index: 2;
+      }
+
+      .product-badge.sale {
+        background: var(--secondary);
+      }
+
+      .product-badge.new {
+        background: var(--accent);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: var(--transition);
+      }
+
+      .product-card:hover .product-image {
+        transform: scale(1.05);
+      }
+
+      .product-info {
+        padding: 20px;
+      }
+
+      .product-title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: var(--dark);
+      }
+
+      .product-description {
+        color: var(--gray);
+        margin-bottom: 15px;
+        line-height: 1.5;
+        font-size: 0.95rem;
+      }
+
+      .product-price {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+      }
+
+      .current-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .original-price {
+        font-size: 1rem;
+        color: var(--gray);
+        text-decoration: line-through;
+      }
+
+      .product-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 15px;
+      }
+
+      .rating-stars {
+        color: #ffc107;
+      }
+
+      .rating-count {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .product-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .add-to-cart {
+        flex: 1;
+        padding: 12px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .add-to-cart:hover {
+        background: var(--primary-dark);
+      }
+
+      .wishlist-btn {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        border: 1px solid var(--gray-light);
+        background: white;
+        color: var(--gray);
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .wishlist-btn:hover,
+      .wishlist-btn.active {
+        color: var(--secondary);
+        border-color: var(--secondary);
+      }
+
+      /* Testimonials */
+      #testimonials {
+        text-align: center;
+      }
+
+      .testimonials-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .testimonial-slider {
+        overflow: hidden;
+        border-radius: var(--border-radius);
+      }
+
+      .testimonial-track {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .testimonial-slide {
+        min-width: 100%;
+        padding: 40px;
+        background: white;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+
+      .testimonial-content {
+        font-size: 1.2rem;
+        font-style: italic;
+        line-height: 1.8;
+        margin-bottom: 25px;
+        position: relative;
+      }
+
+      .testimonial-content:before,
+      .testimonial-content:after {
+        content: '"';
+        font-size: 3rem;
+        color: var(--secondary-light);
+        opacity: 0.3;
+        position: absolute;
+      }
+
+      .testimonial-content:before {
+        top: -20px;
+        left: -10px;
+      }
+
+      .testimonial-content:after {
+        bottom: -40px;
+        right: -10px;
+      }
+
+      .testimonial-author {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .author-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .author-info h4 {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .author-info p {
+        color: var(--gray);
+        font-size: 0.9rem;
+      }
+
+      .slider-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .slider-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--gray-light);
+        border: none;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .slider-dot.active {
+        background: var(--primary);
+        transform: scale(1.2);
+      }
+
+      /* Contact Section */
+      #contact {
+        display: flex;
+        gap: 60px;
+        align-items: flex-start;
+      }
+
+      .contact-info {
+        flex: 1;
+      }
+
+      .contact-methods {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin-top: 30px;
+      }
+
+      .contact-method {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--primary-light);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+      }
+
+      .contact-form {
+        flex: 1;
+        background: white;
+        padding: 40px;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow);
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 15px;
+        border: 1px solid var(--gray-light);
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(42, 77, 155, 0.1);
+      }
+
+      textarea.form-control {
+        min-height: 150px;
+        resize: vertical;
+      }
+
+      /* Newsletter */
+      .newsletter {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        padding: 60px;
+        border-radius: var(--border-radius);
+        text-align: center;
+        margin-top: 80px;
+      }
+
+      .newsletter h3 {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+      }
+
+      .newsletter p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin: 0 auto 30px;
+        opacity: 0.9;
+      }
+
+      .newsletter-form {
+        max-width: 500px;
+        margin: 0 auto;
+        display: flex;
+        gap: 10px;
+      }
+
+      .newsletter-input {
+        flex: 1;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 60px 5% 30px;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .footer-about {
+        line-height: 1.8;
+        color: #aaa;
+      }
+
+      .footer-links h4,
+      .footer-contact h4 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: white;
+      }
+
+      .footer-links ul {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 12px;
+      }
+
+      .footer-links a {
+        color: #aaa;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: white;
+        padding-left: 5px;
+      }
+
+      .footer-contact p {
+        color: #aaa;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .social-icon:hover {
+        background: var(--secondary);
+        transform: translateY(-3px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #888;
+        font-size: 0.9rem;
+      }
+
+      /* Cart Sidebar */
+      .cart-sidebar {
+        position: fixed;
+        top: 0;
+        right: -400px;
+        width: 400px;
+        height: 100vh;
+        background: white;
+        box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        z-index: 2000;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cart-sidebar.active {
+        right: 0;
+      }
+
+      .cart-header {
+        padding: 25px;
+        border-bottom: 1px solid var(--gray-light);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .cart-header h3 {
+        color: var(--primary);
+        font-size: 1.5rem;
+      }
+
+      .close-cart {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--gray);
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .close-cart:hover {
+        color: var(--primary);
+      }
+
+      .cart-items {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      .cart-item {
+        display: flex;
+        gap: 15px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--gray-light);
+      }
+
+      .cart-item-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .cart-item-info h4 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+
+      .cart-item-price {
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+
+      .cart-item-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .quantity-btn {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        border: 1px solid var(--gray-light);
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .cart-item-quantity {
+        font-weight: 600;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .remove-item {
+        margin-left: auto;
+        color: var(--secondary);
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .cart-footer {
+        padding: 25px;
+        border-top: 1px solid var(--gray-light);
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .cart-total span:last-child {
+        color: var(--primary);
+      }
+
+      .checkout-btn {
+        width: 100%;
+        padding: 15px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .checkout-btn:hover {
+        background: var(--primary-dark);
+      }
+
+      .cart-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+      }
+
+      .cart-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      /* Animations for elements */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+
+      .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive */
+      @media (max-width: 1100px) {
+        #about,
+        #contact {
+          flex-direction: column;
+        }
+
+        .about-image {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        header {
+          padding: 15px 20px;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        nav {
+          position: fixed;
+          top: 70px;
+          left: 0;
+          width: 100%;
+          background: white;
+          flex-direction: column;
+          padding: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+          transform: translateY(-100%);
+          opacity: 0;
+          visibility: hidden;
+          transition: var(--transition);
+          z-index: 999;
+        }
+
+        nav.active {
+          transform: translateY(0);
+          opacity: 1;
+          visibility: visible;
+        }
+
+        #hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .section-title {
+          font-size: 2.2rem;
+        }
+
+        .cart-sidebar {
+          width: 100%;
+          right: -100%;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #hero h1 {
+          font-size: 2.2rem;
+        }
+
+        #hero p {
+          font-size: 1.1rem;
+        }
+
+        .section-title {
+          font-size: 1.8rem;
+        }
+
+        .about-stats {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="main-header">
+      <div class="logo">
+        <i class="fas fa-store logo-icon"></i>
+        <span>Salem</span> Store
+      </div>
+
+      <div class="nav-container">
+        <nav id="main-nav">
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#products">Products</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="cart-icon" id="cart-icon">
+          <i class="fas fa-shopping-cart"></i>
+          <div class="cart-count">0</div>
+        </div>
+
+        <button class="mobile-menu-btn" id="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <div class="floating-icons">
+        <div class="floating-icon" style="top: 20%; left: 10%">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="floating-icon" style="top: 60%; left: 85%">
+          <i class="fas fa-gift"></i>
+        </div>
+        <div class="floating-icon" style="top: 80%; left: 15%">
+          <i class="fas fa-tag"></i>
+        </div>
+        <div class="floating-icon" style="top: 30%; left: 75%">
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+
+      <div class="hero-content">
+        <h1>Elevate Your Everyday</h1>
+        <p>
+          Discover premium essentials, curated for modern living. Quality
+          products, seamless shopping, and exceptional service—only at Salem.
+        </p>
+        <div class="hero-buttons">
+          <button class="hero-btn btn-primary" onclick="shopNow()">
+            <i class="fas fa-shopping-bag"></i> Shop Collection
+          </button>
+          <a href="#products" class="hero-btn btn-secondary">
+            <i class="fas fa-eye"></i> Browse Products
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="animate-on-scroll">
+      <div class="about-content">
+        <h2 class="section-title">Our Story</h2>
+        <p class="section-subtitle">
+          Salem is a modern online shopping destination designed to bring
+          premium products directly to your doorstep. Founded in 2020, we've
+          served over 50,000 satisfied customers with our curated selection of
+          lifestyle essentials.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-number" data-count="50000">0</div>
+            <div class="stat-label">Happy Customers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="1200">0</div>
+            <div class="stat-label">Products</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="48">0</div>
+            <div class="stat-label">Hour Delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-image">
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+          alt="Salem Warehouse"
+        />
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="animate-on-scroll">
+      <h2 class="section-title">Featured Collection</h2>
+      <p class="section-subtitle">
+        Handpicked essentials designed for quality, comfort, and style. Every
+        product is carefully selected and tested.
+      </p>
+
+      <div class="product-filters">
+        <button class="filter-btn active" data-filter="all">
+          All Products
+        </button>
+        <button class="filter-btn" data-filter="electronics">
+          Electronics
+        </button>
+        <button class="filter-btn" data-filter="home">Home & Living</button>
+        <button class="filter-btn" data-filter="lifestyle">Lifestyle</button>
+      </div>
+
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card" data-category="electronics">
+          <div class="product-badge sale">SALE</div>
+          <img
+            class="product-image"
+            src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Noise-Cancel Headphones"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Noise‑Cancel Headphones</h3>
+            <p class="product-description">
+              Premium audio experience with 40-hour battery life and
+              crystal‑clear clarity. Perfect for work and travel.
+            </p>
+
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-count">(128 reviews)</span>
+            </div>
+
+            <div class="product-price">
+              <span class="current-price">$189.99</span>
+              <span class="original-price">$249.99</span>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart" data-product="1">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-category="lifestyle">
+          <div class="product-badge new">NEW</div>
+          <img
+            class="product-image"
+            src="https://images.unsplash.com/photo-1592878904946-b3cd8f0b84f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Minimalist Watch"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Minimalist Watch</h3>
+            <p class="product-description">
+              Sleek, durable design with water resistance up to 50m. Perfect for
+              everyday wear and special occasions.
+            </p>
+
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(94 reviews)</span>
+            </div>
+
+            <div class="product-price">
+              <span class="current-price">$89.99</span>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart" data-product="2">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-category="home">
+          <img
+            class="product-image"
+            src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Home Aroma Diffuser"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Home Aroma Diffuser</h3>
+            <p class="product-description">
+              Elegant scent diffusion with multi‑mode ambient lighting. Creates
+              a calming atmosphere in any room.
+            </p>
+
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-count">(203 reviews)</span>
+            </div>
+
+            <div class="product-price">
+              <span class="current-price">$49.99</span>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart" data-product="3">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-category="lifestyle">
+          <img
+            class="product-image"
+            src="https://images.unsplash.com/photo-1606813907291-d86bba9ffa8a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80"
+            alt="Smart Water Bottle"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Smart Water Bottle</h3>
+            <p class="product-description">
+              Track hydration and temperature with smart reminders. BPA-free and
+              insulated for 24 hours.
+            </p>
+
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="rating-count">(156 reviews)</span>
+            </div>
+
+            <div class="product-price">
+              <span class="current-price">$34.99</span>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart" data-product="4">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card" data-category="electronics">
+          <div class="product-badge">BESTSELLER</div>
+          <img
+            class="product-image"
+            src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80"
+            alt="Wireless Speaker"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Portable Bluetooth Speaker</h3>
+            <p class="product-description">
+              360° immersive sound with 15-hour battery. Waterproof and perfect
+              for outdoor adventures.
+            </p>
+
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span class="rating-count">(312 reviews)</span>
+            </div>
+
+            <div class="product-price">
+              <span class="current-price">$129.99</span>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart" data-product="5">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card" data-category="home">
+          <img
+            class="product-image"
+            src="https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            alt="Desk Lamp"
+          />
+          <div class="product-info">
+            <h3 class="product-title">Modern Desk Lamp</h3>
+            <p class="product-description">
+              Adjustable LED lighting with multiple color temperatures. Touch
+              controls and USB charging port.
+            </p>
+
+            <div class="product-rating">
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="far fa-star"></i>
+              </div>
+              <span class="rating-count">(87 reviews)</span>
+            </div>
+
+            <div class="product-price">
+              <span class="current-price">$59.99</span>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart" data-product="6">
+                <i class="fas fa-cart-plus"></i> Add to Cart
+              </button>
+              <button class="wishlist-btn">
+                <i class="far fa-heart"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="animate-on-scroll">
+      <h2 class="section-title">Trusted by Thousands</h2>
+      <p class="section-subtitle">
+        See what our customers have to say about their Salem shopping
+        experience.
+      </p>
+
+      <div class="testimonials-container">
+        <div class="testimonial-slider">
+          <div class="testimonial-track" id="testimonial-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-content">
+                "Fast delivery and excellent product packaging. Salem's quality
+                exceeded my expectations. The headphones I purchased are
+                fantastic—they rival brands twice the price!"
+              </div>
+              <div class="testimonial-author">
+                <img
+                  class="author-avatar"
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  alt="Nadia K."
+                />
+                <div class="author-info">
+                  <h4>Nadia K.</h4>
+                  <p>Verified Customer • 12 purchases</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-content">
+                "Reliable store with great product selection. I've already
+                ordered twice and both times the products arrived ahead of
+                schedule. Customer service is responsive and helpful."
+              </div>
+              <div class="testimonial-author">
+                <img
+                  class="author-avatar"
+                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  alt="Marcus L."
+                />
+                <div class="author-info">
+                  <h4>Marcus L.</h4>
+                  <p>Verified Customer • 8 purchases</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide">
+              <div class="testimonial-content">
+                "As a designer, I appreciate the minimalist aesthetic of Salem's
+                products. The desk lamp and aroma diffuser transformed my
+                workspace. Quality is exceptional for the price point."
+              </div>
+              <div class="testimonial-author">
+                <img
+                  class="author-avatar"
+                  src="https://randomuser.me/api/portraits/women/67.jpg"
+                  alt="Sophia R."
+                />
+                <div class="author-info">
+                  <h4>Sophia R.</h4>
+                  <p>Interior Designer • 5 purchases</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-dots" id="slider-dots">
+          <button class="slider-dot active" data-slide="0"></button>
+          <button class="slider-dot" data-slide="1"></button>
+          <button class="slider-dot" data-slide="2"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="animate-on-scroll">
+      <div class="contact-info">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">
+          Have questions or need assistance? We're here to help you with any
+          inquiries about our products or services.
+        </p>
+
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h4>Call Us</h4>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4>Email Us</h4>
+              <p>support@salemstore.com</p>
+            </div>
+          </div>
+
+          <div class="contact-method">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4>Visit Us</h4>
+              <p>123 Commerce Street, Business District, NY 10001</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 class="section-title">Send a Message</h3>
+        <form id="contact-form">
+          <div class="form-group">
+            <label class="form-label" for="name">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              placeholder="Your Name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="subject">Subject</label>
+            <input
+              type="text"
+              id="subject"
+              class="form-control"
+              placeholder="How can we help?"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea
+              id="message"
+              class="form-control"
+              placeholder="Your message here..."
+              rows="5"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="hero-btn btn-primary"
+            style="width: 100%"
+          >
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter animate-on-scroll">
+      <h3>Stay in the Loop</h3>
+      <p>
+        Subscribe to our newsletter for exclusive deals, new arrivals, and style
+        inspiration delivered to your inbox.
+      </p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input
+          type="email"
+          class="newsletter-input"
+          placeholder="Enter your email address"
+          required
+        />
+        <button type="submit" class="hero-btn btn-primary">
+          <i class="fas fa-paper-plane"></i> Subscribe
+        </button>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <div class="footer-about">
+          <div class="footer-logo">
+            <i class="fas fa-store"></i> Salem Store
+          </div>
+          <p class="footer-about">
+            Your premier destination for quality lifestyle products. We're
+            committed to exceptional quality, seamless shopping, and customer
+            satisfaction since 2020.
+          </p>
+
+          <div class="social-icons">
+            <a href="#" class="social-icon"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Shop</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4>Customer Service</h4>
+          <ul>
+            <li><a href="#">Shipping Policy</a></li>
+            <li><a href="#">Return & Exchange</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h4>Contact Info</h4>
+          <p>
+            <i class="fas fa-map-marker-alt"></i> 123 Commerce Street, Business
+            District, NY 10001
+          </p>
+          <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+          <p><i class="fas fa-envelope"></i> support@salemstore.com</p>
+          <p><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm EST</p>
+        </div>
+      </div>
+
+      <div class="copyright">
+        © 2025 Salem Online Store. All Rights Reserved. | Designed with
+        <i class="fas fa-heart" style="color: #ff7a45"></i> for shoppers
+        everywhere.
+      </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+      <div class="cart-header">
+        <h3>Your Shopping Cart</h3>
+        <button class="close-cart" id="close-cart">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <div class="cart-items" id="cart-items">
+        <!-- Cart items will be dynamically added here -->
+        <div class="empty-cart-message" id="empty-cart-message">
+          <i
+            class="fas fa-shopping-cart"
+            style="font-size: 3rem; color: #ccc; margin-bottom: 20px"
+          ></i>
+          <h4>Your cart is empty</h4>
+          <p>Add some products to get started!</p>
+        </div>
+      </div>
+
+      <div class="cart-footer" id="cart-footer" style="display: none">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span id="cart-total">$0.00</span>
+        </div>
+        <button class="checkout-btn" id="checkout-btn">
+          <i class="fas fa-lock"></i> Proceed to Checkout
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Mobile Menu Toggle
+      const menuToggle = document.getElementById("menu-toggle");
+      const mainNav = document.getElementById("main-nav");
+
+      menuToggle.addEventListener("click", () => {
+        mainNav.classList.toggle("active");
+        menuToggle.innerHTML = mainNav.classList.contains("active")
+          ? '<i class="fas fa-times"></i>'
+          : '<i class="fas fa-bars"></i>';
+      });
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll("#main-nav a").forEach((link) => {
+        link.addEventListener("click", () => {
+          mainNav.classList.remove("active");
+          menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+
+      // Header scroll effect
+      const header = document.getElementById("main-header");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+      });
+
+      // Product filtering
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const productCards = document.querySelectorAll(".product-card");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          // Remove active class from all buttons
+          filterButtons.forEach((btn) => btn.classList.remove("active"));
+
+          // Add active class to clicked button
+          button.classList.add("active");
+
+          const filterValue = button.getAttribute("data-filter");
+
+          productCards.forEach((card) => {
+            if (
+              filterValue === "all" ||
+              card.getAttribute("data-category") === filterValue
+            ) {
+              card.style.display = "block";
+              setTimeout(() => {
+                card.style.opacity = "1";
+                card.style.transform = "translateY(0)";
+              }, 10);
+            } else {
+              card.style.opacity = "0";
+              card.style.transform = "translateY(20px)";
+              setTimeout(() => {
+                card.style.display = "none";
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // Testimonial slider
+      const testimonialTrack = document.getElementById("testimonial-track");
+      const sliderDots = document.querySelectorAll(".slider-dot");
+      let currentTestimonial = 0;
+      const totalTestimonials =
+        document.querySelectorAll(".testimonial-slide").length;
+
+      function updateTestimonialSlider() {
+        testimonialTrack.style.transform = `translateX(-${
+          currentTestimonial * 100
+        }%)`;
+
+        // Update dots
+        sliderDots.forEach((dot, index) => {
+          if (index === currentTestimonial) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      // Dot click events
+      sliderDots.forEach((dot, index) => {
+        dot.addEventListener("click", () => {
+          currentTestimonial = index;
+          updateTestimonialSlider();
+        });
+      });
+
+      // Auto slide testimonials
+      setInterval(() => {
+        currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+        updateTestimonialSlider();
+      }, 6000);
+
+      // Shopping Cart Functionality
+      const cartIcon = document.getElementById("cart-icon");
+      const cartSidebar = document.getElementById("cart-sidebar");
+      const cartOverlay = document.getElementById("cart-overlay");
+      const closeCart = document.getElementById("close-cart");
+      const cartItemsContainer = document.getElementById("cart-items");
+      const emptyCartMessage = document.getElementById("empty-cart-message");
+      const cartFooter = document.getElementById("cart-footer");
+      const cartTotalElement = document.getElementById("cart-total");
+      const checkoutBtn = document.getElementById("checkout-btn");
+
+      let cart = JSON.parse(localStorage.getItem("salemCart")) || [];
+      const cartCount = document.querySelector(".cart-count");
+
+      // Update cart count
+      function updateCartCount() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        cartCount.style.display = totalItems > 0 ? "flex" : "none";
+      }
+
+      // Update cart display
+      function updateCartDisplay() {
+        cartItemsContainer.innerHTML = "";
+
+        if (cart.length === 0) {
+          emptyCartMessage.style.display = "block";
+          cartFooter.style.display = "none";
+          return;
+        }
+
+        emptyCartMessage.style.display = "none";
+        cartFooter.style.display = "block";
+
+        let totalPrice = 0;
+
+        cart.forEach((item, index) => {
+          const cartItem = document.createElement("div");
+          cartItem.className = "cart-item";
+          cartItem.innerHTML = `
+            <img class="cart-item-image" src="${item.image}" alt="${item.name}">
+            <div class="cart-item-details">
+              <h4>${item.name}</h4>
+              <div class="cart-item-price">$${item.price.toFixed(2)}</div>
+              <div class="cart-item-actions">
+                <button class="quantity-btn decrease" data-index="${index}">-</button>
+                <span class="cart-item-quantity">${item.quantity}</span>
+                <button class="quantity-btn increase" data-index="${index}">+</button>
+                <button class="remove-item" data-index="${index}">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+          `;
+
+          cartItemsContainer.appendChild(cartItem);
+          totalPrice += item.price * item.quantity;
+        });
+
+        cartTotalElement.textContent = `$${totalPrice.toFixed(2)}`;
+
+        // Add event listeners to new cart buttons
+        document.querySelectorAll(".decrease").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const index = e.target.getAttribute("data-index");
+            updateQuantity(index, -1);
+          });
+        });
+
+        document.querySelectorAll(".increase").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const index = e.target.getAttribute("data-index");
+            updateQuantity(index, 1);
+          });
+        });
+
+        document.querySelectorAll(".remove-item").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            const index = e.target
+              .closest(".remove-item")
+              .getAttribute("data-index");
+            removeFromCart(index);
+          });
+        });
+
+        // Save cart to localStorage
+        localStorage.setItem("salemCart", JSON.stringify(cart));
+      }
+
+      // Add to cart functionality
+      document.querySelectorAll(".add-to-cart").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const productCard = e.target.closest(".product-card");
+          const productId = e.target.getAttribute("data-product");
+          const productName =
+            productCard.querySelector(".product-title").textContent;
+          const productPrice = parseFloat(
+            productCard
+              .querySelector(".current-price")
+              .textContent.replace("$", "")
+          );
+          const productImage = productCard.querySelector(".product-image").src;
+
+          // Check if product is already in cart
+          const existingIndex = cart.findIndex((item) => item.id === productId);
+
+          if (existingIndex > -1) {
+            // Increase quantity
+            cart[existingIndex].quantity += 1;
+          } else {
+            // Add new item
+            cart.push({
+              id: productId,
+              name: productName,
+              price: productPrice,
+              image: productImage,
+              quantity: 1,
+            });
+          }
+
+          // Update UI
+          updateCartCount();
+          updateCartDisplay();
+
+          // Show confirmation animation
+          const originalText = button.innerHTML;
+          button.innerHTML = '<i class="fas fa-check"></i> Added!';
+          button.style.background = "#32b99d";
+
+          setTimeout(() => {
+            button.innerHTML = originalText;
+            button.style.background = "";
+          }, 1500);
+
+          // Open cart sidebar
+          cartSidebar.classList.add("active");
+          cartOverlay.classList.add("active");
+        });
+      });
+
+      // Wishlist functionality
+      document.querySelectorAll(".wishlist-btn").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const icon = button.querySelector("i");
+
+          if (icon.classList.contains("far")) {
+            icon.classList.remove("far");
+            icon.classList.add("fas");
+            button.classList.add("active");
+
+            // Show notification
+            showNotification("Product added to wishlist!");
+          } else {
+            icon.classList.remove("fas");
+            icon.classList.add("far");
+            button.classList.remove("active");
+
+            // Show notification
+            showNotification("Product removed from wishlist.");
+          }
+        });
+      });
+
+      // Update quantity
+      function updateQuantity(index, change) {
+        cart[index].quantity += change;
+
+        if (cart[index].quantity <= 0) {
+          cart.splice(index, 1);
+        }
+
+        updateCartCount();
+        updateCartDisplay();
+      }
+
+      // Remove from cart
+      function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartCount();
+        updateCartDisplay();
+      }
+
+      // Cart sidebar controls
+      cartIcon.addEventListener("click", () => {
+        cartSidebar.classList.add("active");
+        cartOverlay.classList.add("active");
+      });
+
+      closeCart.addEventListener("click", () => {
+        cartSidebar.classList.remove("active");
+        cartOverlay.classList.remove("active");
+      });
+
+      cartOverlay.addEventListener("click", () => {
+        cartSidebar.classList.remove("active");
+        cartOverlay.classList.remove("active");
+      });
+
+      // Checkout button
+      checkoutBtn.addEventListener("click", () => {
+        if (cart.length === 0) return;
+
+        alert(
+          `Thank you for your order! Total: ${cartTotalElement.textContent}\n\nThis is a demo store. In a real application, this would redirect to a checkout page.`
+        );
+
+        // Clear cart
+        cart = [];
+        updateCartCount();
+        updateCartDisplay();
+
+        // Close cart
+        cartSidebar.classList.remove("active");
+        cartOverlay.classList.remove("active");
+      });
+
+      // Form submissions
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          showNotification(
+            "Message sent successfully! We'll get back to you soon."
+          );
+          e.target.reset();
+        });
+
+      document
+        .getElementById("newsletter-form")
+        .addEventListener("submit", (e) => {
+          e.preventDefault();
+          const email = e.target.querySelector('input[type="email"]').value;
+          showNotification(
+            `Thank you for subscribing with ${email}! Check your inbox for exclusive offers.`
+          );
+          e.target.reset();
+        });
+
+      // Show notification
+      function showNotification(message) {
+        const notification = document.createElement("div");
+        notification.style.cssText = `
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          background: var(--primary);
+          color: white;
+          padding: 15px 25px;
+          border-radius: 8px;
+          box-shadow: var(--shadow);
+          z-index: 9999;
+          transform: translateY(100px);
+          opacity: 0;
+          transition: all 0.3s ease;
+        `;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+
+        // Animate in
+        setTimeout(() => {
+          notification.style.transform = "translateY(0)";
+          notification.style.opacity = "1";
+        }, 10);
+
+        // Animate out after 3 seconds
+        setTimeout(() => {
+          notification.style.transform = "translateY(100px)";
+          notification.style.opacity = "0";
+
+          // Remove from DOM after animation
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+
+      // Animate counting stats
+      function animateCounters() {
+        const counters = document.querySelectorAll(".stat-number");
+        const speed = 200;
+
+        counters.forEach((counter) => {
+          const target = parseInt(counter.getAttribute("data-count"));
+          const count = parseInt(counter.textContent);
+          const increment = target / speed;
+
+          if (count < target) {
+            const newCount = Math.ceil(count + increment);
+            counter.textContent = newCount;
+            setTimeout(() => animateCounters(), 1);
+          } else {
+            counter.textContent = target.toLocaleString();
+          }
+        });
+      }
+
+      // Scroll animations
+      const animateElements = document.querySelectorAll(".animate-on-scroll");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+
+              // Animate counters when about section is visible
+              if (entry.target.id === "about") {
+                setTimeout(animateCounters, 300);
+              }
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px",
+        }
+      );
+
+      animateElements.forEach((element) => {
+        observer.observe(element);
+      });
+
+      // Floating icons animation
+      const floatingIcons = document.querySelectorAll(".floating-icon");
+      floatingIcons.forEach((icon, index) => {
+        icon.style.animationDelay = `${index * 1.5}s`;
+      });
+
+      // Initialize cart
+      updateCartCount();
+      updateCartDisplay();
+
+      // Original shopNow function
+      function shopNow() {
+        document
+          .querySelector("#products")
+          .scrollIntoView({ behavior: "smooth" });
+      }
+    </script>
+  </body>
+</html>
